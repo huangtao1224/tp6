@@ -22,7 +22,7 @@
                     <td><a href="/admin/region/city?region_pid={$vo.region_id}&region_type={$vo.region_type}" class="layui-btn"><i class="layui-icon layui-icon-list"></i>省份列表</a></td>
                     <td>
                         <button class="layui-btn layui-btn-normal layui-btn-xs layui-btn2" onclick="xadmin.open('修改信息','{:url(\'admin/region/edit\')}?region_id={$vo.region_id}')"><i class="layui-icon"></i>修改</button>
-                        <button class="layui-btn-danger layui-btn layui-btn-xs layui-btn2" onclick="member_del(this,'{:url(\'admin/region/del_save\')}','{$vo.region_id}')"><i class="layui-icon"></i>删除</button>
+                        <button class="layui-btn-danger layui-btn layui-btn-xs layui-btn2" onclick="region_del(this,'{:url(\'admin/region/del_save\')}','{$vo.region_id}')"><i class="layui-icon"></i>删除</button>
                     </td>
                 </tr>
                 {/volist}

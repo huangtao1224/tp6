@@ -18,6 +18,7 @@ class Member extends BaseController
             'input'=>$input,
         ]);
     }
+
     public function add()
     {
         $input = Db::name('input')->where(array('type_id'=>8,'list_switch'=>2))->select()->toArray();
@@ -26,6 +27,7 @@ class Member extends BaseController
             'input'=>$input,
         ]);
     }
+
     public function add_save()
     {
         $data = $_REQUEST;
@@ -68,6 +70,7 @@ class Member extends BaseController
             die();
         }
     }
+
     public function edit()
     {
         $type_id = 8;
@@ -84,6 +87,7 @@ class Member extends BaseController
             'content'=>$content,
         ]);
     }
+
     public function edit_save(){
         $data = $_REQUEST;
         $type_id = $data['type_id'];

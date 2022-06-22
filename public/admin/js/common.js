@@ -28,21 +28,35 @@ function ajax_list(path,data){
 }
 
 /*删除*/
-function member_del(obj,url,id){
+function member_del(obj,url,id,type_id=''){
     layer.confirm('确认要删除吗？',function(index){
-        var data = {id:id};
+        var data = {id:id,type_id:type_id};
         var msg = ajax_list(url,data);
         if(msg.code==200){
             $(obj).parents("tr").remove();
             layer.msg(msg.msg,{icon:1,time:1000},function () {
-                //window.location.reload();
+                window.location.reload();
             });
         }else{
             layer.msg(msg.msg,{icon:2,time:1000});
         }
     });
 }
-
+/*内容删除*/
+function content_del(obj,url,id,type_id,classify_id){
+    layer.confirm('确认要删除吗？',function(index){
+        var data = {id:id,type_id:type_id,classify_id:classify_id};
+        var msg = ajax_list(url,data);
+        if(msg.code==200){
+            $(obj).parents("tr").remove();
+            layer.msg(msg.msg,{icon:1,time:1000},function () {
+                window.location.reload();
+            });
+        }else{
+            layer.msg(msg.msg,{icon:2,time:1000});
+        }
+    });
+}
 //登陆
 function link_login() {
     var username = $.trim($("input[name='username']").val());

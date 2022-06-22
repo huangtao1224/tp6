@@ -1,4 +1,4 @@
-<?php /*a:3:{s:55:"D:\phpstudy_pro\WWW\tp\app\admin\view\member\index.html";i:1652178872;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\head.html";i:1650277060;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\foot.html";i:1649475024;}*/ ?>
+<?php /*a:3:{s:55:"D:\phpstudy_pro\WWW\tp\app\admin\view\member\index.html";i:1655707536;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\head.html";i:1655533487;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\foot.html";i:1649475024;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,54 +23,54 @@
 
     @media screen and (min-width: 768px) {
         #right::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
+            width: 5px;
+            height: 5px;
             background-color: #EEEEEE;
         }
         /*定义滚动条轨道 内阴影+圆角*/
         #right::-webkit-scrollbar-track {
-            border-radius: 10px;
+            border-radius: 5px;
             background-color: #EEEEEE;
         }
         /*定义滑块 内阴影+圆角*/
         #right::-webkit-scrollbar-thumb
         {
-            border-radius: 10px;
+            border-radius: 5px;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
         }
         .layui-table-body::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
+            width: 5px;
+            height: 5px;
             background-color: #EEEEEE;
         }
 
         /*定义滚动条轨道 内阴影+圆角*/
         .layui-table-body::-webkit-scrollbar-track {
-            border-radius: 10px;
+            border-radius: 5px;
             background-color: #EEEEEE;
         }
 
         /*定义滑块 内阴影+圆角*/
         .layui-table-body::-webkit-scrollbar-thumb {
-            border-radius: 10px;
+            border-radius: 5px;
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
             background-color: #555;
         }
         .layui-form-selected dl::-webkit-scrollbar {
-            width: 10px;
-            height: 10px;
+            width: 5px;
+            height: 5px;
             background-color: #EEEEEE;
         }
         /*定义滚动条轨道 内阴影+圆角*/
         .layui-form-selected dl::-webkit-scrollbar-track {
-            border-radius: 10px;
+            border-radius: 5px;
             background-color: #EEEEEE;
         }
         /*定义滑块 内阴影+圆角*/
         .layui-form-selected dl::-webkit-scrollbar-thumb
         {
-            border-radius: 10px;
+            border-radius: 5px;
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
             background-color: #555;
         }
@@ -90,12 +90,12 @@
             <table class="layui-table layui-form">
                 <thead>
                 <tr>
-                    <th>ID</th>
+                    <th width="160">ID</th>
                     <?php if(is_array($input) || $input instanceof \think\Collection || $input instanceof \think\Paginator): $i = 0; $__LIST__ = $input;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                     <th><?php echo htmlentities($vo['input_name']); ?></th>
                     <?php endforeach; endif; else: echo "" ;endif; ?>
                     <th width="160">排序</th>
-                    <th>操作</th>
+                    <th width="200">操作</th>
                 </tr>
                 </thead>
                 <tbody class="x-cate">

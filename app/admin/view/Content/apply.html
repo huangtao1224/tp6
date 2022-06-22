@@ -2,14 +2,13 @@
 <div id="right">
     <div class="layui-card">
         <div class="layui-card-body">
-            <a href="javascript:;" onclick="xadmin.open('添加表单','{:url(\'admin/content/add\')}?classify_id={$classify_id}')" class="layui-btn"><i class="layui-icon"></i>添加内容</a>
+            <a href="javascript:;" onclick="xadmin.open('添加表单','{:url(\'admin/content/add\')}')" class="layui-btn"><i class="layui-icon"></i>添加内容</a>
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="javascript:history.back(-1);" title="返回"><i class="bi bi-arrow-left" style="line-height:30px"></i></a>
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="window.location.reload();" title="刷新">
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
         </div>
         <div class="layui-card-body layui-table-body visible">
             <form class="layui-form">
-                <input type="hidden" name="classify_id" value="{$classify_id}">
                 <table class="layui-table layui-form">
                     <thead>
                     <tr>
@@ -86,7 +85,7 @@
                             {/switch}
                         </td>
                         {/volist}
-                        <td style="font-weight: bold;color:#000;">{$classify_name}</td>
+                        <td style="font-weight: bold;color:#000;"></td>
                         {notempty name="$childType"}
                         <td>
                             {volist name="$vo.child" id="child"}
@@ -97,7 +96,7 @@
                         <td><input name="date[]" type="text" value="{$vo.date|date='Y-m-d H:i:s'}" autocomplete="off" class="layui-input"/></td>
                         <td>
                             <button type="button" class="layui-btn layui-btn-normal layui-btn-xs layui-btn2" onclick="xadmin.open('修改','{:url(\'admin/content/edit\')}?content_id={$vo[$table_id]}&type_id={$vo.type_id}')"><i class="layui-icon"></i>修改</button>
-                            <button class="layui-btn-danger layui-btn layui-btn-xs layui-btn2" type="button" onclick="content_del(this,'{:url(\'/admin/content/del_save\')}','{$vo[$table_id]}','{$type_id}','{$classify_id}')"><i class="layui-icon"></i>删除</button>
+                            <button class="layui-btn-danger layui-btn layui-btn-xs layui-btn2" type="button" onclick="content_del(this,'{:url(\'/admin/content/del_save\')}','{$vo[$table_id]}','{$type_id}')"><i class="layui-icon"></i>删除</button>
                         </td>
                     </tr>
                     {/volist}

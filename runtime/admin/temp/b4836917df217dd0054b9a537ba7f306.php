@@ -1,4 +1,4 @@
-<?php /*a:3:{s:56:"D:\phpstudy_pro\WWW\tp\app\admin\view\content\index.html";i:1655807464;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\head.html";i:1655533487;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\foot.html";i:1649475024;}*/ ?>
+<?php /*a:3:{s:56:"D:\phpstudy_pro\WWW\tp\app\admin\view\content\apply.html";i:1655864150;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\head.html";i:1655533487;s:54:"D:\phpstudy_pro\WWW\tp\app\admin\view\Common\foot.html";i:1649475024;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,14 +83,13 @@
 <div id="right">
     <div class="layui-card">
         <div class="layui-card-body">
-            <a href="javascript:;" onclick="xadmin.open('添加表单','<?php echo url('admin/content/add'); ?>?classify_id=<?php echo htmlentities($classify_id); ?>')" class="layui-btn"><i class="layui-icon"></i>添加内容</a>
+            <a href="javascript:;" onclick="xadmin.open('添加表单','<?php echo url('admin/content/add'); ?>')" class="layui-btn"><i class="layui-icon"></i>添加内容</a>
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="javascript:history.back(-1);" title="返回"><i class="bi bi-arrow-left" style="line-height:30px"></i></a>
             <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="window.location.reload();" title="刷新">
                 <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i></a>
         </div>
         <div class="layui-card-body layui-table-body visible">
             <form class="layui-form">
-                <input type="hidden" name="classify_id" value="<?php echo htmlentities($classify_id); ?>">
                 <table class="layui-table layui-form">
                     <thead>
                     <tr>
@@ -151,16 +150,18 @@
                             <?php endswitch; ?>
                         </td>
                         <?php endforeach; endif; else: echo "" ;endif; ?>
-                        <td style="font-weight: bold;color:#000;"><?php echo htmlentities($classify_name); ?></td>
+                        <td style="font-weight: bold;color:#000;"></td>
+                        <?php if(!(empty($childType) || (($childType instanceof \think\Collection || $childType instanceof \think\Paginator ) && $childType->isEmpty()))): ?>
                         <td>
                             <?php if(is_array($vo['child']) || $vo['child'] instanceof \think\Collection || $vo['child'] instanceof \think\Paginator): $i = 0; $__LIST__ = $vo['child'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$child): $mod = ($i % 2 );++$i;?>
                             <a href="/admin/content/apply/?content_id=<?php echo htmlentities($vo[$table_id]); ?>&type_id=<?php echo htmlentities($child['type_id']); ?>" class="layui-btn layui-btn layui-btn-normal"><i class="layui-icon layui-icon-list"></i><?php echo htmlentities($child['type_name']); ?>(<?php echo htmlentities($child['count']); ?>)</a>
                             <?php endforeach; endif; else: echo "" ;endif; ?>
                         </td>
+                        <?php endif; ?>
                         <td><input name="date[]" type="text" value="<?php echo htmlentities(date('Y-m-d H:i:s',!is_numeric($vo['date'])? strtotime($vo['date']) : $vo['date'])); ?>" autocomplete="off" class="layui-input"/></td>
                         <td>
                             <button type="button" class="layui-btn layui-btn-normal layui-btn-xs layui-btn2" onclick="xadmin.open('修改','<?php echo url('admin/content/edit'); ?>?content_id=<?php echo htmlentities($vo[$table_id]); ?>&type_id=<?php echo htmlentities($vo['type_id']); ?>')"><i class="layui-icon"></i>修改</button>
-                            <button class="layui-btn-danger layui-btn layui-btn-xs layui-btn2" type="button" onclick="content_del(this,'<?php echo url('/admin/content/del_save'); ?>','<?php echo htmlentities($vo[$table_id]); ?>','<?php echo htmlentities($type_id); ?>','<?php echo htmlentities($classify_id); ?>')"><i class="layui-icon"></i>删除</button>
+                            <button class="layui-btn-danger layui-btn layui-btn-xs layui-btn2" type="button" onclick="content_del(this,'<?php echo url('/admin/content/del_save'); ?>','<?php echo htmlentities($vo[$table_id]); ?>','<?php echo htmlentities($type_id); ?>')"><i class="layui-icon"></i>删除</button>
                         </td>
                     </tr>
                     <?php endforeach; endif; else: echo "" ;endif; ?>

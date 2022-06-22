@@ -43,56 +43,67 @@ function pg($var)
 }
 
 // 无限分类 1;
-function treeMenu($cate,$type_id,$joinStr='|-',$pid=1,$level=1){
+function treeMenu($cate, $type_id, $joinStr = '|-', $pid = 1, $level = 1)
+{
     $arr = array();
-    foreach ($cate as $k=>$v){
-        if($v['classify_pid']==$pid){
-            if($level==1){
+    foreach ($cate as $k => $v) {
+        if ($v['classify_pid'] == $pid) {
+            if ($level == 1) {
                 $joinStr = '';
-            }else{
-                for($i=1;$i<$v['level_id'];$i++){
+            } else {
+                for ($i = 1; $i < $v['level_id']; $i++) {
                     $joinStr .= '-';
                 }
             }
             //$joinStr = ($level==0?"":'-'); //判断是否是第一级分类
             $v['level_id'] = $level + 1;
-            $v['classify_name'] = $joinStr.$v['classify_name'];
+            $v['classify_name'] = $joinStr . $v['classify_name'];
             $arr[] = $v;
             unset($cate[$k]); //删除该节点，减少递归的消耗
-            $arr = array_merge($arr,treeMenu($cate,$type_id,$joinStr='|-',$v[$type_id],$level +1));
+            $arr = array_merge($arr, treeMenu($cate, $type_id, $joinStr = '|-', $v[$type_id], $level + 1));
         }
     }
     return $arr;
 }
 
 // 无限分类 2;
-function treeMenu2($cate,$type_id,$joinStr='|-',$pid=1,$level=1){
+function treeMenu2($cate, $type_id, $joinStr = '|-', $pid = 1, $level = 1)
+{
     $arr = array();
-    foreach ($cate as $k=>$v){
-        if($v['classify_pid']==$pid){
-            for($i=1;$i<$v['level_id'];$i++){
+    foreach ($cate as $k => $v) {
+        if ($v['classify_pid'] == $pid) {
+            for ($i = 1; $i < $v['level_id']; $i++) {
                 $joinStr .= '-';
             }
             //$joinStr = ($level==0?"":'-'); //判断是否是第一级分类
             $v['level_id'] = $level + 1;
-            $v['classify_name'] = $joinStr.$v['classify_name'];
+            $v['classify_name'] = $joinStr . $v['classify_name'];
             $arr[] = $v;
             unset($cate[$k]); //删除该节点，减少递归的消耗
-            $arr = array_merge($arr,treeMenu($cate,$type_id,$joinStr='|-',$v[$type_id],$level +1));
+            $arr = array_merge($arr, treeMenu($cate, $type_id, $joinStr = '|-', $v[$type_id], $level + 1));
         }
     }
     return $arr;
 }
 
+//同类型下拉分类列表
 
+function recursive_menu($list,$type_id,$classify_pid='1',$recursive=array()){
+    foreach($list as $k=>$v)
+    {
+        $joinStr = '|';
+        if($v['type_id']==$type_id){
+            $middleware['classify_id'] = $v['classify_id'];
+            for ($i = 1; $i < $v['level_id']; $i++) {
+                $joinStr .= '-';
+            }
+            $middleware['classify_name'] = $joinStr.$v['classify_id'].':'.$v['classify_name'];
+            array_push($recursive,$middleware);
+        }
+    }
 
-
-
-
-
-
-
-
+    return $recursive;
+}
 //建立文件
 function creat_file($path)
 {
@@ -117,6 +128,7 @@ function write_file($path, $data)
         return true;
     }
 }
+
 //读取文件
 function read_file($path)
 {

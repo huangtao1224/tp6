@@ -103,7 +103,6 @@ class Region extends BaseController
         }
     }
 
-
     public function del_save(){
         $region_id = pg('id');
         $res = Db::name('region')->where(array('region_id'=>$region_id))->delete();
